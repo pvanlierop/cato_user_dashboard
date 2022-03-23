@@ -45,4 +45,52 @@ def search_user(client, search_query):
         print("Name:", remoteuser['entity']['name'])
         print("Email:", remoteuser['helperFields']['email'])
 
-search_user(client, 'L')
+def active_users(client):
+
+    query = gql(
+        """
+        query userSnapShot($id: ID!) {
+            accountSnapshot(id: $id) {
+                id
+                users {
+                connectivityStatus
+                version
+                versionNumber
+                connectedInOffice
+                uptime
+                id
+                deviceName
+                popName
+                remoteIPInfo {
+                    ip
+                    countryCode
+                    countryName
+                    city
+                    state
+                    provider
+                    latitude
+                    longitude
+                }
+                osVersion
+                osType
+                info {
+                    email
+                    phoneNumber
+                    origin
+                    name
+                    status
+                }
+                }
+                timestamp
+            }
+            }
+    """
+    )
+    params = {"id": CATO_CUSTOMER}
+    result = client.execute(query, variable_values=params)
+    pp = pprint.PrettyPrinter(indent=2)
+    pp.pprint(result)
+
+
+#search_user(client, 'L')
+active_users(client)
