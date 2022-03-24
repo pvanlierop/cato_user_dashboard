@@ -45,6 +45,7 @@ def search_user(client, search_query):
         print("Name:", remoteuser['entity']['name'])
         print("Email:", remoteuser['helperFields']['email'])
 
+
 def active_users(client):
 
     query = gql(
@@ -76,12 +77,9 @@ def active_users(client):
                 info {
                     email
                     phoneNumber
-                    origin
                     name
-                    status
                 }
                 }
-                timestamp
             }
             }
     """
