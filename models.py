@@ -8,7 +8,6 @@ class RemoteUser(BaseModel):
     email: str
     phonenumber: str
     version: str
-    version_number: str
     uptime: datetime
     devicename: str
     osversion: str
@@ -23,26 +22,5 @@ class RemoteUser(BaseModel):
     latitude: str
     longitude: str
     officemode: bool
-
-
-    emoteIPInfo {
-                    ip
-                    countryCode
-                    countryName
-                    city
-                    state
-                    provider
-                    latitude
-                    longitude
-                }
-                osVersion
-                osType
-                info {
-                    email
-                    phoneNumber
-                    origin
-                    name
-                    status
-                }
-                }
-                timestamp
+    connectivitystats: str
+    ip: str
