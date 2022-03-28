@@ -3,7 +3,9 @@ import pprint
 from dotenv import load_dotenv
 from gql import Client, gql
 from gql.transport.requests import RequestsHTTPTransport
+from typing import Optional
 from models import RemoteUser
+
 
 
 
@@ -47,7 +49,7 @@ def search_user(client, search_query):
         print("Email:", remoteuser['helperFields']['email'])
 
 
-def active_users(client):
+def active_users(client, user_id: Optional[int] = None):
 
     query = gql(
         """
@@ -57,7 +59,6 @@ def active_users(client):
                 users {
                     connectivityStatus
                     version
-                    versionNumber
                     connectedInOffice
                     uptime
                     id
